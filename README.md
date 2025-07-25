@@ -40,20 +40,20 @@ Make sure that your project meets these requirements:
 ### Cocoapods
 
 
-You can use [CocoaPods](http://cocoapods.org/) to install `digius` by adding it to your `Podfile`:
+You can use [CocoaPods](http://cocoapods.org/) to install `atlas` by adding it to your `Podfile`:
 
 ```ruby
-source 'https://gitlab.com/frslabs-public/ios/digius-ios.git'
+source 'https://gitlab.com/frslabs-public/ios/atlas-sdk-ios.git'
 source 'https://github.com/CocoaPods/Specs.git'
 platform :ios, '13.0'
 target '<Your Target Name>' do
 use_frameworks!
-pod 'Digius', '1.0.4'
+pod 'Atlas', '1.0.0'
 end
 ```
 ###### Save/Edit Netrc settings to install custom pod
 
-You will need a valid netrc credentials to install digius from maven, which can be obtained by contacting `support@frslabs.com`. 
+You will need a valid netrc credentials to install atlas from maven, which can be obtained by contacting `support@frslabs.com`. 
 
 1. Create or edit .netrc file under current user's home directory
 2. Write the below lines into that file, replace <YOUR_USERNAME> and <YOUR_PASSWORD> with your credentials which is shared through email and save the file.
@@ -66,43 +66,46 @@ password <YOUR_PASSOWRD>
 
    pod install or pod update or pod install --repo-update.
 
-To get the full benefits import `Digius` wherever you import UIKit
+To get the full benefits import `Atlas` wherever you import UIKit
 
 ``` swift
 import UIKit
-import Digius
+import Atlas
 ```
 ## Getting Started
 
 ### Swift
 
-1. Initialize the input parameters and import delegate DigiusControllerDelegate
+1. Initialize the input parameters and import delegate atlasControllerDelegate
 
 ```swift
-class YourViewController: UIViewController,DigiusControllerDelegate {
+class YourViewController: UIViewController,atlasControllerDelegate {
 
-    func digiusControllerSuccess(_ scanner: Digius.DigiusController, didFinishScanningWithResults results: Digius.digiusResult) {
-        var getData = [String:Any]()
-        getData = (results.result) // Return the document result
-        print(results.digiusDocumentType) // Return type of document
+    func atlasScanner(_ scanner: Atlas.AtlasNavigationController, didFinishScanningWithResults results: Atlas.atlasScannerResults) {
+        print(results.capturedSucess)
     }
     
-    func digiusControllerFailed(_ scanner: Digius.DigiusController, didFailWithError error: Int) {
+    func atlasScanner(_ scanner: Atlas.AtlasNavigationController, didCancel cancel: String) {
+        print("cancel")
+    }
+    
+    func atlasScanner(_ scanner: Atlas.AtlasNavigationController, didFailWithError error: String) {
         print(error)
     }
 }
 ```
 
-2. Invoke Digius SDK
+2. Invoke Atlas SDK
 
 ```swift
     // ...
     
     override func viewDidLoad(_ animated: Bool) {
-        let digius = DigiusController(showInstruction: true, delegate:self)
-        digius.modalPresentationStyle = .fullScreen
-        digius.licenceKey = "DIGIUS_LICENCE_KEY"
-        present(digius, animated: false, completion: nil)
+        let scanner = AtlasNavigationController(showInstruction: true, delegate:self)
+        scanner.modalPresentationStyle = .fullScreen
+        scanner.checkId = "CHECK_ID" //Pleaae input the check ID
+        scanner.AtlasUrlType = "STAGING" (or) "PRODUCTION"  
+        present(scanner, animated: true)
     }
     
     // ...    
@@ -110,92 +113,17 @@ class YourViewController: UIViewController,DigiusControllerDelegate {
 
 ## Digius Result
 
-You can use the following methods in the `DigiusResult` instance to parse the success result:
+You can use the following methods in the `AtlasResult` instance to parse the success result:
 
 | Return Type              | Method                        | Usage                                                            |
 | ------------------------ | ----------------------------- | ---------------------------------------------------------------- |
-| DigiusDocumentType | results.digiusDocumentType          | Returns selected document type                                   |
-| AadhaarResult            |results.result            | Returns aadhaar data if document type is aadhaar                 |
-| PanResult | results.result| Returns pan data if document type is pan | 
+| String | results.capturedSucess          | Returns a string value of "success" after successfull capture                             |
 
-`results.result` returns `AadhaarResult` instance with following methods if the document selected is Aadhaar:
+`results.capturedSucess` returns capture is successfull instance with following methods:
 
 ```swift
-    var getAadharData = [String:Any]()
-    getAadharData = (results.AadhaarResult)
+  (results.AadhaarResult)
 ```
-
-| Return Type | Method                               | Usage                            |
-| ----------- | ------------------------------------ | ---------------------------------|
-| String      | *getAadharData["documentNumber"]*                | Returns document number          |
-| String      | *getAadharData["name"]*                          | Returns document's name          |
-| String      | *getAadharData["age"]*                           | Returns age                      |
-| String      | *getAadharData["dob"]*                           | Returns date of birth            |
-| String      | *getAadharData["gender"]*                        | Returns gender                   |
-| String      | *getAadharData["address"]*                       | Returns full address             |
-| String      | *getAadharData["house"]*                         | Returns house name               |
-| String      | *getAadharData["landmark"]*                      | Returns landmark                 |
-| String      | *getAadharData["location"]*                      | Returns location                 |
-| String      | *getAadharData["district"]*                      | Returns district                 |
-| String      | *getAadharData["state"]*                         | Returns state                    |
-| String      | *getAadharData["country"]*                       | Returns country                  |
-| String      | *getAadharData["pincode"]*                       | Returns pincode                  |
-| String      | *getAadharData["photo"]*                         | Returns user's photo in BASE64 String            |
-| String      | *getAadharData["lastFourDigits"]*         | Returns last four digits of aadhaar     |
-| String      | *getAadharData["issuedDate"]*             | Returns aadhaar issued date and time     |
-
-PHOTO: Convert BASE64 into Image
-```swift
-  func convertBase64StringToImage (imageBase64String:String) -> UIImage {
-      let imageData = Data(base64Encoded: imageBase64String)
-      let image = UIImage(data: imageData!)
-      return image!
-  }
-  
-  convertBase64StringToImage(imageBase64String: (getAadharData["photo"]) as! String)
-```
-
-`results.result` returns `PanResult` instance with following methods if the document selected is PAN:
-
-```swift
-    var getPanData = [String:Any]()
-    getPanData = (results.result)
-```
-
-| Return Type | Method                               | Usage                            |
-| ----------- | ------------------------------------ | ---------------------------------|
-| String      | *getPanData["documentNumber"]*                | Returns document number          |
-| String      | *getPanData["name"]*                          | Returns document's name          |
-| String      | *getPanData["dob"]*                           | Returns date of birth            |
-| String      | *getPanData["gender"]*                        | Returns gender                   |
-| String      | *getPanData["verifiedOn"]*             | Returns pan verified date     |
-
-
-Available document types are
-
-  | Method                      | Value |  Document            |
-  | --------------------------- | ------- | ------------------- |
-  | results.digiusDocumentType  | AADHAAR |  Aadhaar Card        |
-  | results.digiusDocumentType  | PAN |  Pan Card        |
-
-
-## Digius Error Codes
-
-Following error codes will be returned on the `didFailWithError` method of the callback
-
-| CODE | DESCRIPTION                                     |
-| ---- | ------------------------------------------------|
-| 401  | Invalid licence                                 |
-| 402  | Licence expired                                 |
-| 403  | User canceled                                   |
-| 404  | Unable to ping                                  |
-| 405  | Transaction limit exceeded                      |
-| 406  | No internet connection                          |
-| 407  | Document read permission denied                 |
-| 408  | Invalid settings                                |
-| 409  | Failed to retrieve data                         |
-
-
 
 ## Help
 For any queries/feedback , contact us at `support@frslabs.com`
