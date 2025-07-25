@@ -3,7 +3,7 @@
 # ATLAS SDK (iOS)
 ![version](https://img.shields.io/badge/version-v1.0.0-blue)
 
-ATLAS SDK is used to capture all types of Location,Document,Face,Aadhaar,Data,Video,Email,Phone,Consent,Video Declaration.
+ATLAS SDK is used to capture all types of Location, Document, Face, Aadhaar, Data, Video, Email, Phone, Consent, Video Declaration.
 
 You can find the latest changelog at [Changelog](CHANGELOG.md).
 
