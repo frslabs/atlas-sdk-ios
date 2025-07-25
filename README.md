@@ -11,12 +11,11 @@ You can find the latest changelog at [Changelog](CHANGELOG.md).
 # Table Of Content
 
 - [Prerequisite](#prerequisite)
-- [Set Up Digius SDK](#set-up-atlas-sdk)
+- [Set Up Atlas SDK](#set-up-atlas-sdk)
     - [Requirements](#requirements)
-    - [Install Digius SDK](#install-atlas-sdk)
+    - [Install Atlas SDK](#install-atlas-sdk)
 - [Getting Started](#getting-started)
-- [Digius Result](#atlas-result)
-- [Digius Error Codes](#atlas-error-codes)
+- [Atlas Result](#atlas-result)
 - [Help](#help)
 
 ## Prerequisite
@@ -111,7 +110,7 @@ class YourViewController: UIViewController,atlasControllerDelegate {
     // ...    
 ```
 
-## Digius Result
+## Atlas Result
 
 You can use the following methods in the `AtlasResult` instance to parse the success result:
 
