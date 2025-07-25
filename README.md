@@ -112,7 +112,7 @@ You can use the following methods in the `AtlasResult` instance to parse the suc
 `results.capturedSucess` returns capture is successfull instance with following methods:
 
 ```swift
-  (results.AadhaarResult)
+  (results.capturedSucess)
 ```
 
 ## Help
