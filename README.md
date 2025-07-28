@@ -11,6 +11,7 @@ You can find the latest changelog at [Changelog](CHANGELOG.md).
 
 - [Set Up Atlas SDK](#set-up-atlas-sdk)
     - [Requirements](#requirements)
+    -  [Permission](#Permission)
     - [Install Atlas SDK](#install-atlas-sdk)
 - [Getting Started](#getting-started)
 - [Atlas Result](#atlas-result)
