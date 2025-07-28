@@ -27,7 +27,7 @@ Make sure that your project meets these requirements:
 
 ## Permission
 
-In Info.plist file add following code to allow your application to access :
+In Info.plist file add following code to allow your application to access Camera,Location,Microphone:
 
 iPhone's camera:
 ``<key>NSCameraUsageDescription</key>
