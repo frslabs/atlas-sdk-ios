@@ -25,7 +25,7 @@ Make sure that your project meets these requirements:
 - iOS 13.0+
 - Swift 5.0
 
-  ## Permission
+## Permission
 
 In Info.plist file add following code to allow your application to access :
 iPhone's camera:
