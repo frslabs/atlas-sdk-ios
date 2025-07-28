@@ -25,6 +25,22 @@ Make sure that your project meets these requirements:
 - iOS 13.0+
 - Swift 5.0
 
+  ## Permission
+
+In Info.plist file add following code to allow your application to access :
+iPhone's camera:
+``<key>NSCameraUsageDescription</key>
+<string>Allow access to camera</string>``
+
+Location access :
+``<key>NSLocationWhenInUseUsageDescription</key>
+<string>Allow access to location</string>``
+
+Microphone access : 
+``<key>NSMicrophoneUsageDescription</key>
+ <string>Allow access to microphone</string>``
+
+
 #### Install Atlas SDK
 
 ### Cocoapods
