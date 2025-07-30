@@ -99,8 +99,8 @@ class YourViewController: UIViewController,atlasControllerDelegate {
     override func viewDidLoad(_ animated: Bool) {
         let scanner = AtlasNavigationController(delegate:self)
         scanner.modalPresentationStyle = .fullScreen
-        scanner.checkId = "CHECK_ID" //Please input the check ID
-        scanner.AtlasUrlType = "STAGING" (or) "PRODUCTION"  
+        scanner.checkId = "CHECK_ID" //Please input the check ID (Required params)
+        scanner.AtlasUrlType = "STAGING" (or) "PRODUCTION"  (Required params)
         present(scanner, animated: true)
     }
     
