@@ -15,6 +15,7 @@ You can find the latest changelog at [Changelog](CHANGELOG.md).
     - [Install Atlas SDK](#install-atlas-sdk)
 - [Getting Started](#getting-started)
 - [Atlas Result](#atlas-result)
+-  [Atlas Error Codes](#atlas-error-codes)
 - [Help](#help)
 
 ## Set Up Atlas SDK
@@ -120,6 +121,15 @@ You can use the following methods in the `AtlasResult` instance to parse the suc
 ```swift
   (results.capturedSucess)
 ```
+## Atlas Error Codes
 
+Following error codes will be returned on the `onError` method of the callback
+
+| CODE | DESCRIPTION                                     |
+| ---- | ------------------------------------------------|
+| 506  | No internet connection                          |
+| 507  | Failed to retrieve data                         |
+| 508  | Invalid settings                                |
+| 509  | Permission denied                               |
 ## Help
 For any queries/feedback , contact us at `support@frslabs.com`
