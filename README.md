@@ -1,7 +1,7 @@
 # atlas-sdk-ios
 
 # ATLAS SDK (iOS)
-![version](https://img.shields.io/badge/version-v1.0.1-blue)
+![version](https://img.shields.io/badge/version-v1.0.2-blue)
 
 ATLAS SDK is used to capture all types of Location, Document, Face, Aadhaar, Data, Video, Email, Phone, Consent, Video Declaration.
 
@@ -56,7 +56,7 @@ source 'https://github.com/CocoaPods/Specs.git'
 platform :ios, '13.0'
 target '<Your Target Name>' do
 use_frameworks!
-pod 'Atlas', '1.0.1'
+pod 'Atlas', '1.0.2'
 end
 ```
 ###### Save/Edit Netrc settings to install custom pod
