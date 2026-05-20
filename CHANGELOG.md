@@ -1,4 +1,7 @@
 # Changelog
+## **v1.0.8** - *20-05-2026*
+- Swift & Xcode 26.5 version
+  
 ## **v1.0.5** - *02-01-2026*
 - Swift & Xcode 26.2 version with OS 26.1 update.
   
